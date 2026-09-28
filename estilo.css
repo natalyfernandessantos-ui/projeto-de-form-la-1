@@ -1,0 +1,198 @@
+/* RESET & VARIÁVEIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0f1015;
+    --card-bg: #181a20;
+    --primary-red: #e10600;
+    --primary-hover: #ff1801;
+    --text-white: #ffffff;
+    --text-muted: #a0a5b5;
+    --border-color: #2a2d37;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+/* HERO SECTION (CABEÇALHO) */
+.hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    /* Substitua a imagem abaixo pelo link da imagem gerada no seu repositório */
+    background: url('hero-f1.jpg') center/cover no-repeat;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(15,16,21,0.6) 0%, rgba(15,16,21,1) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+}
+
+.badge {
+    background-color: rgba(225, 6, 0, 0.2);
+    border: 1px solid var(--primary-red);
+    color: #ff4d4d;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 15px 0;
+    color: var(--text-white);
+    text-transform: uppercase;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-red);
+    color: var(--text-white);
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(225, 6, 0, 0.4);
+}
+
+/* LAYOUT E CARDS */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.grid-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--text-white);
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+/* CTA BOX */
+.cta-box {
+    background: linear-gradient(135deg, #1f222b 0%, #15171e 100%);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--primary-red);
+    border-radius: 12px;
+    padding: 40px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.cta-box h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.cta-box p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid var(--primary-red);
+    color: var(--text-white);
+    padding: 10px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-red);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
