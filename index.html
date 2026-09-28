@@ -3,208 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórmula 1 — Velocidade e Tecnologia</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
 
-    <title>Fórmula 1</title>
+    <!-- CSS EMBUTIDO JUNTO COM O HTML -->
+    <style>
+        /* RESET & VARIÁVEIS DE CORES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        :root {
+            --bg-dark: #0a0b0e;
+            --card-bg: #14161d;
+            --primary-red: #e10600;
+            --primary-hover: #ff221c;
+            --text-white: #ffffff;
+            --text-muted: #a0a5b5;
+            --border-color: #232733;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        /* BANNER PRINCIPAL (HERO) */
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10,11,14,0.5) 0%, rgba(10,11,14,0.95) 85%, var(--bg-dark) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+        }
+
+        .badge {
+            background-color: rgba(225, 6, 0, 0.25);
+            border: 1px solid var(--primary-red);
+            color: #ff4d4d;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: var(--text-white);
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(225, 6, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(225, 6, 0, 0.5);
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 60px 20px;
+        }
+
+        /* GRID DE CARDS */
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-red);
+            box-shadow: 0 12px 30px rgba(225, 6, 0, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .card-body h2 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        /* BANNER FINAL (CTA) */
+        .cta-box {
+            background: linear-gradient(135deg, #1d202a 0%, #111319 100%);
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--primary-red);
+            border-radius: 16px;
+            padding: 50px 30px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .cta-box h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            border: 2px solid var(--primary-red);
+            color: var(--text-white);
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            background-color: #07080a;
+        }
+
+        footer p {
+            margin: 4px 0;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .grid-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-    <header>
-        <h1>Fórmula 1</h1>
-        <p>Velocidade, tecnologia e competição</p>
+    <!-- CABEÇALHO HERO COM IMAGEM DE DESTAQUE -->
+    <header class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <span class="badge">Velocidade • Tecnologia • Competição</span>
+            <h1>Fórmula 1</h1>
+            <p>O ápice do automobilismo mundial reunindo velocidade, inovação e os melhores pilotos do planeta.</p>
+            <a href="#conteudo" class="btn-primary">Explorar Projeto ➔</a>
+        </div>
     </header>
 
-    <main>
+    <main class="container" id="conteudo">
 
-        <section>
-            <h2>O que é a Fórmula 1?</h2>
+        <section class="grid-section">
 
-            <p>
-                A Fórmula 1 é a principal categoria do automobilismo mundial.
-                É uma competição que reúne pilotos e equipes de diferentes países
-                para disputar corridas em diversos circuitos ao redor do mundo.
-            </p>
+            <!-- CARD 1: O QUE É A F1 -->
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=800&auto=format&fit=crop" alt="Carro de Corrida" class="card-img">
+                <div class="card-body">
+                    <h2>O que é a Fórmula 1?</h2>
+                    <p>A Fórmula 1 é a principal categoria do automobilismo mundial. É uma competição que reúne pilotos e equipes de diferentes países para disputar corridas em diversos circuitos ao redor do mundo.</p>
+                    <p>Os carros são desenvolvidos com tecnologias de ponta e atingem velocidades extremamente altas com alto nível de precisão.</p>
+                </div>
+            </article>
 
-            <p>
-                Os carros de Fórmula 1 são desenvolvidos com tecnologias muito
-                avançadas e são capazes de atingir velocidades extremamente altas.
-                Além da velocidade, os pilotos precisam ter habilidade, concentração
-                e muita experiência para conseguir competir em alto nível.
-            </p>
+            <!-- CARD 2: COMO FUNCIONA -->
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=800&auto=format&fit=crop" alt="Pista de corrida" class="card-img">
+                <div class="card-body">
+                    <h2>Como Funciona?</h2>
+                    <p>Durante um fim de semana de Fórmula 1, os pilotos participam de treinos livres para ajustar o carro, seguidos pela classificação que define o grid de largada.</p>
+                    <p>No domingo, disputam a corrida acumulando pontos para o campeonato mundial de pilotos e de construtores.</p>
+                </div>
+            </article>
+
+            <!-- CARD 3: OS CARROS -->
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1541348263662-e082662d82da?q=80&w=800&auto=format&fit=crop" alt="Motor e Aerodinâmica" class="card-img">
+                <div class="card-body">
+                    <h2>Os Carros & Aerodinâmica</h2>
+                    <p>Com formato aerodinâmico, baixo peso e motores potentes, os carros são projetados para atingir altíssimas velocidades e contornar curvas rapidamente.</p>
+                    <p>As asas dianteiras e traseiras geram <i>downforce</i>, mantendo o veículo firme no solo e dando total controle ao piloto.</p>
+                </div>
+            </article>
+
+            <!-- CARD 4: AS EQUIPES -->
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1508974239320-0a029497e820?q=80&w=800&auto=format&fit=crop" alt="Equipe de corrida" class="card-img">
+                <div class="card-body">
+                    <h2>As Equipes</h2>
+                    <p>Equipes lendárias como Ferrari, McLaren, Mercedes, Red Bull Racing e Williams marcam a história da competição.</p>
+                    <p>Além de dois pilotos principais, cada equipe conta com centenas de engenheiros, mecânicos e estrategistas nos bastidores.</p>
+                </div>
+            </article>
+
+            <!-- CARD 5: OS PILOTOS -->
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop" alt="Capacete de piloto" class="card-img">
+                <div class="card-body">
+                    <h2>Os Pilotos</h2>
+                    <p>Os pilotos de Fórmula 1 estão entre os atletas mais bem preparados do mundo. Muitos começam ainda crianças no kart.</p>
+                    <p>Nas corridas, precisam tomar decisões em frações de segundo a mais de 300 km/h, lidando com desgaste de pneus e esforço físico extremo.</p>
+                </div>
+            </article>
+
+            <!-- CARD 6: SEGURANÇA E PONTUAÇÃO -->
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1532974297617-c0f05fe483ac?q=80&w=800&auto=format&fit=crop" alt="Pista de F1 à noite" class="card-img">
+                <div class="card-body">
+                    <h2>Segurança & História</h2>
+                    <p>Desde 1950, a F1 evoluiu muito em segurança: o Halo, o macacão antichama e a célula de sobrevivência protegem os pilotos em qualquer impacto.</p>
+                    <p>Além disso, muitas novidades testadas na pista tornam-se tecnologias aplicadas nos carros da nossa vida cotidiana!</p>
+                </div>
+            </article>
+
         </section>
 
-
-        <section>
-            <h2>Como funciona a Fórmula 1?</h2>
-
-            <p>
-                Durante um fim de semana de Fórmula 1, os pilotos participam de
-                sessões de treino para conhecer melhor o circuito e preparar o carro.
-                Depois dos treinos acontece a classificação, que define a posição
-                em que cada piloto começará a corrida.
-            </p>
-
-            <p>
-                No dia da corrida, os pilotos disputam várias voltas tentando
-                terminar na melhor posição possível. Ao longo da temporada,
-                eles recebem pontos de acordo com seus resultados. No final,
-                o piloto e a equipe que acumularem mais pontos conquistam os
-                respectivos campeonatos.
-            </p>
+        <!-- CHAMADA PARA AÇÃO (CTA) -->
+        <section class="cta-box">
+            <h2>Quer saber mais sobre a Fórmula 1?</h2>
+            <p>Acompanhe calendários, resultados das corridas, notícias e estatísticas no site oficial.</p>
+            <a href="https://www.formula1.com/" target="_blank" rel="noopener" class="btn-secondary">Acessar Fórmula1.com 🌐</a>
         </section>
-
-
-        <section>
-            <h2>Os carros</h2>
-
-            <p>
-                Os carros de Fórmula 1 são conhecidos por seu formato aerodinâmico,
-                baixo peso e grande potência. Eles são projetados para alcançar
-                altas velocidades e também para fazer curvas rapidamente.
-            </p>
-
-            <p>
-                A aerodinâmica é uma das partes mais importantes do carro.
-                As asas dianteira e traseira ajudam a criar força para manter
-                o carro próximo ao chão, aumentando a estabilidade e permitindo
-                que o piloto tenha mais controle durante as curvas.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>As equipes</h2>
-
-            <p>
-                Cada equipe normalmente possui dois pilotos que competem durante
-                a temporada. Além dos pilotos, existem centenas de profissionais
-                trabalhando nos bastidores, como engenheiros, mecânicos,
-                estrategistas e outros especialistas.
-            </p>
-
-            <p>
-                Algumas das equipes mais conhecidas da história da Fórmula 1 são
-                Ferrari, McLaren, Mercedes, Red Bull Racing e Williams.
-                Cada equipe possui suas próprias cores, identidade e história
-                dentro da categoria.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Os pilotos</h2>
-
-            <p>
-                Os pilotos de Fórmula 1 estão entre os melhores profissionais
-                do automobilismo. Para chegar à categoria, muitos começam
-                competindo ainda crianças no kart e passam por diferentes
-                categorias antes de chegar à Fórmula 1.
-            </p>
-
-            <p>
-                Durante uma corrida, o piloto precisa tomar decisões rapidamente,
-                controlar o carro em alta velocidade e cuidar dos pneus e do
-                combustível. Além da habilidade, a preparação física e mental
-                também é muito importante.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Como funciona a pontuação?</h2>
-
-            <p>
-                A pontuação é distribuída de acordo com a posição em que os
-                pilotos terminam cada corrida. Os melhores colocados recebem
-                mais pontos, enquanto os pilotos que terminam em posições mais
-                baixas recebem menos.
-            </p>
-
-            <p>
-                Esses pontos são somados durante toda a temporada. No final,
-                o piloto com a maior quantidade de pontos conquista o campeonato
-                mundial de pilotos. As equipes também acumulam pontos e disputam
-                o campeonato de construtores.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Segurança</h2>
-
-            <p>
-                A segurança é uma das principais preocupações da Fórmula 1.
-                Ao longo dos anos, a categoria desenvolveu diversas tecnologias
-                para proteger os pilotos em caso de acidentes.
-            </p>
-
-            <p>
-                Os carros possuem estruturas resistentes, sistemas de proteção
-                e equipamentos especiais utilizados pelos pilotos. Os circuitos
-                também possuem áreas de escape, barreiras e equipes médicas
-                preparadas para agir rapidamente quando necessário.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>História da Fórmula 1</h2>
-
-            <p>
-                O Campeonato Mundial de Fórmula 1 começou oficialmente em 1950.
-                Desde então, a categoria passou por muitas mudanças e se tornou
-                uma das competições esportivas mais conhecidas do planeta.
-            </p>
-
-            <p>
-                Ao longo de sua história, diversos pilotos se tornaram grandes
-                nomes do automobilismo, e muitas equipes construíram uma forte
-                tradição na categoria. A Fórmula 1 também ajudou a desenvolver
-                tecnologias que influenciaram outros tipos de carros.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Curiosidades</h2>
-
-            <p>
-                A Fórmula 1 é disputada em diferentes países e possui circuitos
-                com características muito diferentes. Algumas pistas são
-                extremamente rápidas, enquanto outras possuem muitas curvas
-                e exigem grande precisão dos pilotos.
-            </p>
-
-            <p>
-                Outra curiosidade é que os carros podem ultrapassar velocidades
-                muito altas, dependendo do circuito e das condições da corrida.
-                Por isso, pequenos detalhes na configuração do carro podem
-                fazer uma grande diferença no resultado final.
-            </p>
-        </section>
-
-
-        <div class="botao">
-
-            <p>
-                Quer conhecer mais sobre a Fórmula 1, suas equipes,
-                pilotos e corridas?
-            </p>
-
-            <a href="https://www.formula1.com/" target="_blank">
-                Saiba mais
-            </a>
-
-        </div>
 
     </main>
 
-
+    <!-- RODAPÉ -->
     <footer>
-        <p>Projeto sobre Fórmula 1 🏎️</p>
-        <p>Desenvolvido para estudo de HTML e CSS</p>
+        <p>🏎️ Projeto de Estudo sobre Fórmula 1</p>
+        <p>Desenvolvido para aprendizado de HTML e CSS</p>
     </footer>
 
 </body>
